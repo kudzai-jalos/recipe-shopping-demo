@@ -25,6 +25,7 @@ export class RecipeService {
       [new Ingredient('Eggs', 2), new Ingredient('Salt', 1)]
     ),
   ];
+  recipesChanged = new Subject<Recipe[]>();
 
   // private selectedRecipeId:number;
 
@@ -38,11 +39,22 @@ export class RecipeService {
   }
 
   getRecipe(id: number): Recipe {
-    return this.recipes.find((rec) => rec.getId() === id);
+    return this.recipes.find((recipe) => recipe.getId() === id);
   }
 
-  addRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
+  addRecipe(newRecipe: Recipe) {
+    this.recipes.push(newRecipe);
+  }
+
+  updateRecipe(newRecipe: Recipe) {
+    // this.recipes.map((recipe: Recipe) => {
+    //   return newRecipe.getId() === recipe.getId() ? newRecipe : recipe;
+    // });
+
+    const recipeIndex = this.recipes.findIndex((recipe) => {
+      recipe.getId() === newRecipe.getId();
+    });
+    this.recipes.splice(recipeIndex, 1, newRecipe);
   }
 
   addToShoppingList(recipe: Recipe) {

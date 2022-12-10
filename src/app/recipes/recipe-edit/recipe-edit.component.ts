@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from 'src/app/shared/models/ingredient.model';
+import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { Recipe } from '../../shared/models/recipe.model';
 
 @Component({
@@ -15,7 +16,11 @@ export class RecipeEditComponent implements OnInit {
 
   recipeForm: FormGroup;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private recipeService: RecipeService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     // listen for recipe from route resolver
@@ -81,18 +86,18 @@ export class RecipeEditComponent implements OnInit {
 
     // perform update or create
 
+    console.log(this.recipeForm.value);
+
     const nameInput: string = this.recipeForm.value['recipeName'];
     const descriptionInput: string = this.recipeForm.value['recipeDescription'];
     const imagePathInput: string = this.recipeForm.value['recipeImagePath'];
     const ingredients: Ingredient[] = [];
 
-    console.log((<FormArray>this.recipeForm.get('ingredients')));
-
-    for (let ingredient of (<FormArray>this.recipeForm.get('ingredients')).value) {
+    for (let ingredient of this.controls) {
       ingredients.push(
         new Ingredient(
-          ingredient['ingredientName'],
-          ingredient['ingredientAmount']
+          ingredient.value['ingredientName'],
+          ingredient.value['ingredientAmount']
         )
       );
     }
@@ -109,9 +114,14 @@ export class RecipeEditComponent implements OnInit {
       ingredients
     );
 
-    console.log(newRecipe);
     if (this.isEditing) {
+      this.recipeService.updateRecipe(newRecipe);
     } else {
+      this.recipeService.addRecipe(newRecipe);
     }
+
+    console.log(this.recipeService.getRecipes());
+    this.recipeService.recipesChanged.next(this.recipeService.getRecipes());
+    this.router.navigate(['recipes', newRecipe.getId()]);
   }
 }
