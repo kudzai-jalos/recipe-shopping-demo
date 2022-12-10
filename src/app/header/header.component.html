@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="">Shop by Recipe</a>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="recipes" routerLinkActive="active"
+            >Recipes <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="shopping-list" routerLinkActive="active">Shopping List</a>
+        </li>
+      </ul>
+      <ul class="nav justify-content-center">
+        <li class="dropdown" appDropdown>
+          <a class="nav-link dropdown-toggle" href="#">Manage</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action 1</a></li>
+            <li><a class="dropdown-item" href="#">Action 1</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

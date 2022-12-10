@@ -1,0 +1,19 @@
+<a
+  [routerLink]="[recipe.getId()]"
+  routerLinkActive="active"
+  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+  
+>
+  <div class="align-items-center mt-2">
+    <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
+    <p class="list-group-item-text">{{ recipe.description }}</p>
+  </div>
+  <span>
+    <img
+      [src]="recipe.imagePath"
+      alt=""
+      style="max-height: 50px"
+      class="img-fluid"
+    />
+  </span>
+</a>

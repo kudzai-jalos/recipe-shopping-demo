@@ -1,0 +1,87 @@
+<div class="container">
+  <h3>{{ isEditing ? "Edit" : "Create" }} Recipe</h3>
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3 row">
+      <label for="nameInput" class="col-4 col-form-label">Name</label>
+      <div class="col-8">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="recipeName"
+          placeholder="Name"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="description" class="col-4 col-form-label">Description</label>
+      <div class="col-8">
+        <textarea
+          type="text"
+          class="form-control"
+          formControlName="recipeDescription"
+          placeholder="Description"
+        ></textarea>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="imagePath" class="col-4 col-form-label">Image URL</label>
+      <div class="col-8">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="recipeImagePath"
+          placeholder="Image URL"
+        />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label class="col-4 col-form-label">Ingredients</label>
+      <div class="col-8">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onAddIngredient()"
+        >
+          Add new
+        </button>
+      </div>
+    </div>
+    <div class="mb-3 row" formArrayName="ingredients">
+      <div
+        class="offset-sm-4 col-sm-8"
+        *ngFor="let item of controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="row">
+          <div class="col-6 mb-3">
+            <input
+              type="text"
+              formControlName="ingredientName"
+              class="form-control"
+              placeholder="Ingredient name"
+            />
+          </div>
+          <div class="col-3">
+            <input
+              type="number"
+              formControlName="ingredientAmount"
+              class="form-control"
+              placeholder="Amount"
+            />
+          </div>
+          <div class="col-3">
+            <button class="btn btn-danger" (click)="onRemoveIngredient(i)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-sm-8">
+        <button type="submit" class="btn btn-success me-2">
+          {{ isEditing ? "Update" : "Create" }} Recipe
+        </button>
+        <button class="btn btn-danger">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
