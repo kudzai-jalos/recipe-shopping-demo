@@ -33,8 +33,21 @@
           class="form-control"
           formControlName="recipeImagePath"
           placeholder="Image URL"
+          #imagePath
         />
       </div>
+    </div>
+
+    <div class="mb-3 row">
+      <p>
+        <strong>{{
+          imagePath.value.substring(0, 50) +
+            (imagePath.value.length > 50 ? "..." : "")
+        }}</strong>
+      </p>
+      <img [src]="imagePath.value" alt="" style="max-height: 300px" />
+      <hr />
+
     </div>
 
     <div class="mb-3 row">
