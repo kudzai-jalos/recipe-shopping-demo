@@ -15,7 +15,12 @@
       </ul>
       <ul class="nav justify-content-center">
         <li class="dropdown" appDropdown>
-          <a class="nav-link dropdown-toggle" href="#">Manage</a>
+          <!--
+            TODO Consider making the Manage link a button instead. The href is causing
+            issues as it makes the page reload. Also, rather routerLink instead
+            of href. Its angular's own router mechanism.
+          -->
+          <button class="nav-link dropdown-toggle" href="#">Manage</button>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action 1</a></li>
             <li><a class="dropdown-item" href="#">Action 1</a></li>

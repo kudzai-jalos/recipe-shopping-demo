@@ -1,6 +1,12 @@
 <app-header></app-header>
 
 <div class="container">
+  <!--
+    TODO  The row and col spacing is not necessary here. Rather place it on individual
+    if only a certain number of components will use it. If you place the router
+    outlet outside the row div, and remove the row and col div, the would be no
+    change to the display.
+  -->
   <div class="row">
     <div class="col-ms-12">
       <!-- <app-recipes *ngIf="currentPath==='recipes'"></app-recipes>

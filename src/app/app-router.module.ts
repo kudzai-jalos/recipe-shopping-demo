@@ -7,6 +7,16 @@ import { RecipeStartComponent } from './recipes/recipe-list/recipe-start/recipe-
 import { RecipesComponent } from './recipes/recipes.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
+/**
+ * TODO If you have multiple routes that belong to subject, for example, recipes, it
+ * would be best to create a recipe folder within your shared folder. Within the
+ * recipe folder, you can include your own recipe routing module. That way its
+ * easier to maintain the routes and provides you with cleaner and focused code.
+ * It also helps whomever reads your code, because they can use the file structure
+ * to see where they going, which is very important for us, since we look at each
+ * others work a lot.
+ */
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/recipes' },
   {
