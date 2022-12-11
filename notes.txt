@@ -1,0 +1,27 @@
+General notes
+================================
+
+1) Styling
+
+I noticed you used a lot of row classes around col div's. Theres no need for the extra rows. You can apply the row class on the parent div,
+and then inside, you can just use the col class and make the col sizing changes as you wish
+
+2) Component placement
+
+Within the recipe list folder, you have the recipe item and the recipe start component. What would be best is to move those 2 out the folder.
+It was a bit confusing to find, and theres no need to add it within that folder.
+
+3) File structure
+
+To answer your question, the way you have done it is correct. Its important to remember that you will not be the only one to use, see or add
+to the code. By adding correct file names, we can quickly find what we need. Theres a design pattern called chain of responsibility. It
+basically states that certain behaviors and functions should be responsible for their own ability. By breaking up the components into its
+own separate folders and modules, we allow for all behaviors in regards to said component to be solely within that component. That way if
+there is anything to fix, we can know exactly where it is.
+
+4) Functionality
+
+In regards to the actual usage of the program, I would suggest to make more of a distinction between the adding, updating and deleting
+functions. You used the same function for updating and adding in the shopping service. You also made it private. I would recommend
+splitting the function into 2 functions for adding and updating, and making it public so you can use them within the components you are
+using the shopping service

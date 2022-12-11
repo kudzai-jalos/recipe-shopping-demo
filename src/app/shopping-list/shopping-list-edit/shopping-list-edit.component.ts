@@ -29,6 +29,13 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     // console.log(form);
   }
 
+  /**
+   * TODO
+   * When deleting anything, its not wise to pass the entire object through. All deleting needs is just some sort of
+   * identifier, such as mentioned in the shopping list component html file.
+   *
+   * It removes the unneeded instantiation of an object, which takes memory space
+   */
   onDeleteIngredient(form: NgForm) {
     this.shoppingListService.deleteIngredient(
       new Ingredient(form.value['name'], form.value['amount'])

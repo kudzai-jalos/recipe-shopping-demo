@@ -16,6 +16,20 @@ import { RecipeResolver } from './shared/services/recipe-resolver.service';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeStartComponent } from './recipes/recipe-list/recipe-start/recipe-start.component';
 
+/**
+ * TODO
+ * To add to the point mentioned in the app router module, another good reason for separating modules into their own, is
+ * that it cleans up the imports.
+ *
+ * For example, look at the declarations below. With angular, imports and declarations are carried down the chain. It
+ * raises the risk of error with double imports and infinite loop imports. So caution is applied when working in this
+ * module. What i would advice is that you should move out the components into separate folders, and import the module
+ * itself within here.
+ *
+ * So if you were to place the recipe module within the shared module, you can do the following. Add the recipe module
+ * import into the shared module, and then add the shared module import within here.
+ */
+
 @NgModule({
   declarations: [
     AppComponent,
