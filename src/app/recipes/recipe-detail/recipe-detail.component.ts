@@ -1,4 +1,4 @@
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../shared/models/recipe.model';
@@ -14,7 +14,8 @@ export class RecipeDetailComponent implements OnInit {
   optionsDropdownShowing = false;
   constructor(
     private recipeService: RecipeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,5 +34,10 @@ export class RecipeDetailComponent implements OnInit {
     //     this.recipe.name +
     //     ' has been sent to your shopping list.'
     // );
+  }
+
+  onDelete() {
+    this.recipeService.deleteRecipe(this.recipe.getId());
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

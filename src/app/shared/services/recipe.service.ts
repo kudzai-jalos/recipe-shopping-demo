@@ -44,6 +44,8 @@ export class RecipeService {
 
   addRecipe(newRecipe: Recipe) {
     this.recipes.push(newRecipe);
+    this.recipesChanged.next(this.getRecipes());
+
   }
 
   updateRecipe(newRecipe: Recipe) {
@@ -55,6 +57,19 @@ export class RecipeService {
       recipe.getId() === newRecipe.getId();
     });
     this.recipes.splice(recipeIndex, 1, newRecipe);
+    this.recipesChanged.next(this.getRecipes());
+  }
+
+  deleteRecipe(id: number) {
+    const recipeIndex = this.recipes.findIndex((recipe) => {
+      recipe.getId() === id;
+    });
+
+    if (this.recipes.find((recipe) => recipe.getId() === id)) {
+      this.recipes.splice(recipeIndex, 1);
+    }
+    this.recipesChanged.next(this.getRecipes());
+
   }
 
   addToShoppingList(recipe: Recipe) {

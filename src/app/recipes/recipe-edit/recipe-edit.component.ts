@@ -44,8 +44,8 @@ export class RecipeEditComponent implements OnInit {
               Validators.required,
             ]),
             ingredientAmount: new FormControl(ingredient.amount, [
-              Validators.required,
               // Validators.pattern('^[0-9]+[0-9]*'),
+              Validators.required,
               Validators.min(1),
             ]),
           })
@@ -53,7 +53,9 @@ export class RecipeEditComponent implements OnInit {
       }
     }
 
-    const ingredientsArray = new FormArray(ingredientControls);
+    const ingredientsArray = new FormArray(ingredientControls, [
+      Validators.required,
+    ]);
 
     const controls = {
       recipeName: new FormControl(this.isEditing ? this.recipe.name : null, [
@@ -74,20 +76,21 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onAddIngredient() {
-    (<FormArray>this.recipeForm.get('ingredients')).controls.push(
+
+    (this.recipeForm.get('ingredients') as FormArray).push(
       new FormGroup({
         ingredientName: new FormControl(null, [Validators.required]),
         ingredientAmount: new FormControl(1, [
-          Validators.required,
-          // Validators.pattern('^[0-9]+[0-9]*'),
+          // Validators.pattern('^[1-9]+[0-9]*'),
           Validators.min(1),
+          Validators.required,
         ]),
       })
     );
   }
 
   onRemoveIngredient(id: number) {
-    (<FormArray>this.recipeForm.get('ingredients')).controls.splice(id, 1);
+    (this.recipeForm.get('ingredients') as FormArray).removeAt(id);
   }
 
   get controls() {
@@ -132,7 +135,7 @@ export class RecipeEditComponent implements OnInit {
     }
 
     // console.log(this.recipeService.getRecipes());
-    this.recipeService.recipesChanged.next(this.recipeService.getRecipes());
+    // this.recipeService.recipesChanged.next(this.recipeService.getRecipes());
     this.router.navigate(['recipes', newRecipe.getId()]);
   }
 
@@ -140,5 +143,22 @@ export class RecipeEditComponent implements OnInit {
     this.router.navigate(['../'], {
       relativeTo: this.route,
     });
+  }
+
+  formValid() {
+    // let ingredientsValid = true;
+
+    // for (let ingGroup of this.controls) {
+    //   console.log(ingGroup);
+    //   ingredientsValid = ingredientsValid && ingGroup.valid;
+    // }
+
+    return this.recipeForm.valid;
+  }
+
+  //
+
+  onValidate() {
+    console.log(this.recipeForm);
   }
 }
