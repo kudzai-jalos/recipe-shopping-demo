@@ -24,6 +24,12 @@ export class ShoppingListService {
   }
 
   addIngredient(ingredient: Ingredient) {
+    this.addUpdateIngredient(ingredient);
+
+    this.shoppingListChangedSub.next(this.getShoppingList());
+  }
+
+  private addUpdateIngredient(ingredient: Ingredient) {
     let found = false;
     this.shoppingList.map((ingredientItem) => {
       if (ingredientItem.name.toLowerCase() === ingredient.name.toLowerCase()) {
@@ -34,12 +40,13 @@ export class ShoppingListService {
     });
 
     if (!found) this.shoppingList.push(ingredient);
-
-    this.shoppingListChangedSub.next(this.getShoppingList());
   }
 
   addIngredients(ingredients: Ingredient[]) {
-    this.shoppingList.push(...ingredients);
+    // this.shoppingList.push(...ingredients);
+    for (let ing of ingredients) {
+      this.addUpdateIngredient(ing);
+    }
     this.shoppingListChangedSub.next(this.getShoppingList());
   }
 
