@@ -52,7 +52,7 @@
 
     <div class="mb-3 row" formArrayName="ingredients">
       <div
-        class="offset-sm-4 col-sm-8"
+        class="offset-lg-4 col-lg-8"
         *ngFor="let item of controls; let i = index"
       >
         <div class="row" [formGroupName]="i">
@@ -97,5 +97,3 @@
     </div>
   </form>
 </div>
-
-<button (click)="onValidate()">Validate</button>

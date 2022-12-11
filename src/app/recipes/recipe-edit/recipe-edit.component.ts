@@ -156,9 +156,5 @@ export class RecipeEditComponent implements OnInit {
     return this.recipeForm.valid;
   }
 
-  //
 
-  onValidate() {
-    console.log(this.recipeForm);
-  }
 }
