@@ -7,6 +7,10 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="recipes" routerLinkActive="active"
             >Recipes <span class="visually-hidden">(current)</span>
+            <!--
+              TODO
+              What is the use of the span above?
+            -->
           </a>
         </li>
         <li class="nav-item">
@@ -15,6 +19,13 @@
       </ul>
       <ul class="nav justify-content-center">
         <li class="dropdown" appDropdown>
+          <!--
+            TODO
+            No need for href on the manage or the list items. The thing with href's is that it refreshes the page. This
+            kind of defeats angular's ability to load up components without refreshing the page, which takes more time.
+
+            I would suggest using a routerLink attribute
+          -->
           <a class="nav-link dropdown-toggle" href="#">Manage</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action 1</a></li>

@@ -11,7 +11,7 @@ import { ShoppingListService } from '../shared/services/shopping-list.service';
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[] = [];
   subscription: Subscription;
-  
+
 
   constructor(private shoppingListService: ShoppingListService) {}
 

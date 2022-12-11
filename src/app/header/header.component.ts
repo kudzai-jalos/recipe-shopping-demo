@@ -11,6 +11,10 @@ export class HeaderComponent {
 
   manageDropdownShowing=false;
 
+  /**
+   * TODO
+   * Where does this get used?
+   */
   onChangePage(newPath: string) {
     this.pageChanged.emit(newPath);
   }

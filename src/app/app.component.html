@@ -1,6 +1,16 @@
 <app-header></app-header>
 
 <div class="container">
+  <!--
+    TODO
+    There is no need for the row and col div. Since you are not using it for anything of purpose, other than for
+    containment. So, the router-outlet can be moved just under the container div, and the row and col div can be
+    removed.
+
+    Another thing of note is that the row and col div will apply to all pages, since the router-outlet is inside it.
+    You may have some pages that may not need it, and can cause some conflict when applying other styling. The row and
+    col should only be applied where applicable, so preferably applied to individual pages that use a column layout.
+  -->
   <div class="row">
     <div class="col-ms-12">
       <!-- <app-recipes *ngIf="currentPath==='recipes'"></app-recipes>

@@ -2,7 +2,20 @@
   <div class="col-xs-10">
     <app-shopping-list-edit></app-shopping-list-edit>
     <hr />
+    <!--
+      TODO
+      Would could be nice here is to create an ingredient listing and ingredient card component. This allows you to
+      individually customize each components styling, as well as use the same component anywhere else
+    -->
     <ul class="list-group">
+      <!--
+        TODO
+        I noticed you add the index from the for loop. What may be a better solution is to add to the `Ingredient` class
+        an identifier property. This is good for the following:
+        1) Not reliant on the index to get the ingredient
+        2) If the ingredients are used anywhere else, the identifier is still the same since it is unique to each
+          ingredient
+      -->
       <a
         class="list-group-item"
         style="cursor: pointer"
