@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../shared/models/recipe.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { Recipe } from '../shared/models/recipe.model';
 })
 export class RecipesComponent {
   selectedRecipe: Recipe;
+  
 
   onRecipeSelected(recipe: Recipe) {
     this.selectedRecipe = recipe;

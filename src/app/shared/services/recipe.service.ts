@@ -9,22 +9,24 @@ import { Recipe } from '../models/recipe.model';
   providedIn: 'root',
 })
 export class RecipeService {
-  private recipes: Recipe[] = [
-    new Recipe(
-      1,
-      'Salad',
-      'Very simple to make.',
-      'https://upload.wikimedia.org/wikipedia/commons/9/94/Salad_platter.jpg',
-      [new Ingredient('Lettuce', 2), new Ingredient('Tomato', 3)]
-    ),
-    new Recipe(
-      2,
-      'Scrambled Eggs',
-      'Just throw it in a pan!',
-      'https://upload.wikimedia.org/wikipedia/commons/2/20/Scrambed_eggs.jpg',
-      [new Ingredient('Eggs', 2), new Ingredient('Salt', 1)]
-    ),
-  ];
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     1,
+  //     'Salad',
+  //     'Very simple to make.',
+  //     'https://upload.wikimedia.org/wikipedia/commons/9/94/Salad_platter.jpg',
+  //     [new Ingredient('Lettuce', 2), new Ingredient('Tomato', 3)]
+  //   ),
+  //   new Recipe(
+  //     2,
+  //     'Scrambled Eggs',
+  //     'Just throw it in a pan!',
+  //     'https://upload.wikimedia.org/wikipedia/commons/2/20/Scrambed_eggs.jpg',
+  //     [new Ingredient('Eggs', 2), new Ingredient('Salt', 1)]
+  //   ),
+  // ];
+
+  private recipes: Recipe[] = [];
   recipesChanged = new Subject<Recipe[]>();
 
   // private selectedRecipeId:number;
@@ -34,12 +36,17 @@ export class RecipeService {
     private router: Router
   ) {}
 
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(recipes.slice());
+  }
+
   getRecipes(): Recipe[] {
     return this.recipes.slice();
   }
 
   getRecipe(id: number): Recipe {
-    return this.recipes.find((recipe) => recipe.getId() === id);
+    return this.recipes.find((recipe) => recipe.id === id);
   }
 
   addRecipe(newRecipe: Recipe) {
@@ -49,19 +56,23 @@ export class RecipeService {
 
   updateRecipe(newRecipe: Recipe) {
     // this.recipes.map((recipe: Recipe) => {
-    //   return newRecipe.getId() === recipe.getId() ? newRecipe : recipe;
+    //   return newRecipe.id === recipe.id ? newRecipe : recipe;
     // });
 
     const recipeIndex = this.recipes.findIndex((recipe) => {
-      recipe.getId() === newRecipe.getId();
+      // console.log('recipe id' + recipe.id);
+      // console.log('new recipe id' + newRecipe.id);
+
+      return recipe.id === newRecipe.id;
     });
+    console.log(recipeIndex);
     this.recipes.splice(recipeIndex, 1, newRecipe);
     this.recipesChanged.next(this.getRecipes());
   }
 
   deleteRecipe(id: number) {
     const recipeIndex = this.recipes.findIndex((recipe) => {
-      return recipe.getId() == id;
+      return recipe.id == id;
     });
 
     if (recipeIndex !== -1) {
